@@ -1,7 +1,12 @@
 """A minimal protocol-correct MCP server using the official Python SDK."""
-from mcp.server.fastmcp import FastMCP  # type: ignore[attr-defined]
+try:
+    from mcp.server import MCPServer
+except ImportError:  # compatibility with the older locally installed SDK only
+    from mcp.server.fastmcp import (
+        FastMCP as MCPServer,  # type: ignore[attr-defined,no-redef]
+    )
 
-mcp = FastMCP("QuickstartMCP")
+mcp = MCPServer("QuickstartMCP")
 
 @mcp.tool()
 def hello_world(name: str = "World") -> str:
