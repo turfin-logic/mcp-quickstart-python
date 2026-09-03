@@ -1,5 +1,5 @@
 """A minimal protocol-correct MCP server using the official Python SDK."""
-from mcp.server.fastmcp import FastMCP
+from mcp.server.fastmcp import FastMCP  # type: ignore[attr-defined]
 
 mcp = FastMCP("QuickstartMCP")
 
@@ -11,3 +11,4 @@ def hello_world(name: str = "World") -> str:
 if __name__ == "__main__":
     # FastMCP uses stdio by default. stdout is reserved for protocol messages.
     mcp.run()
+
